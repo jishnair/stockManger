@@ -1,1 +1,37 @@
-Stock management application
+Stock management application:
+
+Run the application with "sbt run" & Open the browser at localhost:9000
+
+API Description:
+
+GET     /
+        Lists the current Stock
+
+GET     /stock
+        Returns the stock as Json
+        Example: http://localhost:9000/stock
+
+GET     /stock/:name
+        Returns the product matching name as Json
+        Example: http://localhost:9000/stock/pen
+
+GET     /addnew
+        Adds a new product to Stock and returns the updated Stock as Json
+        Parameters: name: String, quantity: Int
+        Example: http://localhost:9000/addnew?name=orange&quantity=8
+
+GET     /delete
+        Delete an existing product from Stock and returns the updated Stock as Json
+        Parameters: name
+        Example: http://localhost:9000/delete?name=pen
+
+GET     /addstock
+        Fills products matching name and returns the updated Stock as Json
+        Parameters: name: String, quantity: Int
+        Example:http://localhost:9000/addstock?name=pencil&quantity=3
+
+GET     /takestock
+        Remove specified amount of items from stock and returns the updated Stock as Json
+        Parameters: name: String, quantity: Int
+        http://localhost:9000/takestock?name=pen&quantity=3
+

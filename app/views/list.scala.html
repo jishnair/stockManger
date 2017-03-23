@@ -1,13 +1,13 @@
 @(products: List[Product])
 
-@main("Demo page") {
+@main("StockManager") {
 
 <h2>Catalog</h2>
 <ul>
   @for(product <- products) {
   <li>
     <h3>@product.name</h3>
-    <p class="description">@product.quantity</p>
+    <p class="quantity">@product.quantity</p>
   </li>
   }
 </ul>

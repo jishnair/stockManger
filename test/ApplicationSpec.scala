@@ -10,31 +10,32 @@ import play.api.test.Helpers._
 class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
   "Routes" should {
-
     "send 404 on a bad request" in  {
       route(app, FakeRequest(GET, "/boum")).map(status(_)) mustBe Some(NOT_FOUND)
     }
 
   }
 
-  "HomeController" should {
+  "Application" should {
 
     "render the index page" in {
       val home = route(app, FakeRequest(GET, "/")).get
 
       status(home) mustBe OK
       contentType(home) mustBe Some("text/html")
-      contentAsString(home) must include ("Your new application is ready.")
+      contentAsString(home) must include ("StockManager")
     }
 
   }
 
-  "CountController" should {
+  "Application" should {
 
-    "return an increasing count" in {
-      contentAsString(route(app, FakeRequest(GET, "/count")).get) mustBe "0"
-      contentAsString(route(app, FakeRequest(GET, "/count")).get) mustBe "1"
-      contentAsString(route(app, FakeRequest(GET, "/count")).get) mustBe "2"
+    "api tests" in {
+      contentAsString(route(app, FakeRequest(GET, "/stock")).get) must include("Products")
+      contentAsString(route(app, FakeRequest(GET, "/addnew?name=orange&quantity=8")).get) must include("{\"name\":\"orange\",\"quantity\":8}")
+      contentAsString(route(app, FakeRequest(GET, "/delete?name=orange")).get) must not include ("orange")
+      contentAsString(route(app, FakeRequest(GET, "/addstock?name=pencil&quantity=3")).get) must include("{\"name\":\"pencil\",\"quantity\":103}]}")
+      contentAsString(route(app, FakeRequest(GET, "/takestock?name=pencil&quantity=3")).get) must include("{\"name\":\"pencil\",\"quantity\":100}]}")
     }
 
   }
