@@ -1,0 +1,15 @@
+@(products: List[Product])
+
+@main("Demo page") {
+
+<h2>Catalog</h2>
+<ul>
+  @for(product <- products) {
+  <li>
+    <h3>@product.name</h3>
+    <p class="description">@product.quantity</p>
+  </li>
+  }
+</ul>
+
+}
