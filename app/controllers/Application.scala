@@ -53,7 +53,7 @@ class Application @Inject() extends Controller {
 // Delete an existing product from Stock and returns the updated Stock as Json
   def deleteProduct(name: Option[String]) = Action { implicit request =>
     if (name == None)
-      BadRequest("Missing parameters")
+      BadRequest(Json.toJson("Missing parameters"))
     else if(!Stock.isProductExist(name.get))
       Ok(Json.toJson("Item doesn't exist in stock"))
     else {
@@ -83,6 +83,22 @@ class Application @Inject() extends Controller {
       BadRequest("Missing parameters")
     else if(!Stock.isProductExist(name.get))
       Ok(Json.toJson("Item doesn't exist in stock"))
+    else if(!Stock.stockGreaterThanReserve(name.get, qty.get))
+      Ok(Json.toJson("Requested amount is greater than reserve"))
+    else {
+      Stock.takeStock(name.get, qty.get)
+      Ok(Json.obj("Products" -> Stock.getStock))
+    }
+  }
+
+ // Remove specified amount of items from stock and returns the updated Stock as Json. This will ignore the reserve amount.
+  def takeStockReserve(name: Option[String], qty: Option[Int]) = Action { implicit request =>
+    if (name == None || qty == None)
+      BadRequest("Missing parameters")
+    else if(!Stock.isProductExist(name.get))
+      Ok(Json.toJson("Item doesn't exist in stock"))
+    else if(!Stock.amountGreaterThanStock(name.get, qty.get))
+      Ok(Json.toJson("Requested amount is greater than stock"))
     else {
       Stock.takeStock(name.get, qty.get)
       Ok(Json.obj("Products" -> Stock.getStock))

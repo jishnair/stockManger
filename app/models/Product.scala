@@ -17,6 +17,8 @@ object Stock {
     Product("notebook", 25),
     Product("paperclip", 1000))
 
+  val ReserveAmount = 5
+
   //returns stock as a list
   def getStock = stock.toList.sortBy(_.name)
 
@@ -32,23 +34,31 @@ object Stock {
   }
 
   //return a Product matching name
-  def getProductByName(name: String)={
-    stock.filter(_.name ==name)
+  def getProductByName(name: String) = {
+    stock.filter(_.name == name)
   }
 
   //Add new product in to stock
-  def addNewProduct(item: String, amount: Int ): Unit ={
+  def addNewProduct(item: String, amount: Int): Unit = {
     stock += Product(item, amount)
   }
 
   //check if a Product matching name exist
-  def isProductExist(item: String):Boolean={
-    stock.exists(p => p.name==item)
+  def isProductExist(item: String): Boolean = {
+    stock.exists(p => p.name == item)
   }
 
   //delete a product matching name
-  def deleteProduct(item: String)={
-    stock=stock.filterNot(p => p.name ==item)
+  def deleteProduct(item: String) = {
+    stock = stock.filterNot(p => p.name == item)
+  }
+
+  def stockGreaterThanReserve(item: String, amount: Int): Boolean = {
+    stock.exists(p => p.name == item && (p.quantity - amount) > ReserveAmount)
+  }
+
+  def amountGreaterThanStock(item: String, amount: Int): Boolean = {
+    stock.exists(p => p.name == item && (p.quantity - amount) >= 0)
   }
 
 
