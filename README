@@ -36,9 +36,6 @@ GET     /takestock
         Parameters: name: String, quantity: Int
         http://localhost:9000/takestock?name=pen&quantity=3
 
-GET     /takereserve
-        Remove specified amount of items from stock and returns the updated Stock as Json.
+        Remove specified amount of items from stock and returns the updated Stock as Json. This will ignore the reserve amount.
         This will ignore the reserve amount.
-        Parameters: name: String, quantity: Int
-        http://localhost:9000/takereserve?name=pen&quantity=3
 
