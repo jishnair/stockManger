@@ -32,10 +32,10 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
     "api tests" in {
       contentAsString(route(app, FakeRequest(GET, "/stock")).get) must include("Products")
-      contentAsString(route(app, FakeRequest(GET, "/addnew?name=orange&quantity=8")).get) must include("{\"name\":\"orange\",\"quantity\":8}")
-      contentAsString(route(app, FakeRequest(GET, "/delete?name=orange")).get) must not include ("orange")
-      contentAsString(route(app, FakeRequest(GET, "/addstock?name=pencil&quantity=3")).get) must include("{\"name\":\"pencil\",\"quantity\":103}]}")
-      contentAsString(route(app, FakeRequest(GET, "/takestock?name=pencil&quantity=3")).get) must include("{\"name\":\"pencil\",\"quantity\":100}]}")
+      contentAsString(route(app, FakeRequest(POST, "/addnew?name=orange&quantity=8")).get) must include("{\"name\":\"orange\",\"quantity\":8}")
+      contentAsString(route(app, FakeRequest(POST, "/delete?name=orange")).get) must not include ("orange")
+      contentAsString(route(app, FakeRequest(POST, "/addstock?name=pencil&quantity=3")).get) must include("{\"name\":\"pencil\",\"quantity\":103}]}")
+      contentAsString(route(app, FakeRequest(POST, "/takestock?name=pencil&quantity=3")).get) must include("{\"name\":\"pencil\",\"quantity\":100}]}")
     }
 
   }

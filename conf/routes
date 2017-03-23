@@ -8,12 +8,12 @@ GET     /                           controllers.Application.index
 GET     /stock                      controllers.Application.stock
 GET     /stock/:name                controllers.Application.productByName(name: String)
 
-GET     /addnew                     controllers.Application.addNewProduct(name: Option[String], quantity: Option[Int])
-GET     /delete                     controllers.Application.deleteProduct(name: Option[String])
+POST     /addnew                     controllers.Application.addNewProduct(name: Option[String], quantity: Option[Int])
+POST     /delete                     controllers.Application.deleteProduct(name: Option[String])
 
-GET     /addstock                   controllers.Application.addStock(name: Option[String], quantity: Option[Int])
-GET     /takestock                  controllers.Application.takeStock(name: Option[String], quantity: Option[Int])
-GET     /takereserve                controllers.Application.takeStockReserve(name: Option[String], quantity: Option[Int])
+POST     /addstock                   controllers.Application.addStock(name: Option[String], quantity: Option[Int])
+POST     /takestock                  controllers.Application.takeStock(name: Option[String], quantity: Option[Int])
+POST     /takereserve                controllers.Application.takeStockReserve(name: Option[String], quantity: Option[Int])
 
 
 

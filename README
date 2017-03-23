@@ -15,22 +15,22 @@ GET     /stock/:name
         Returns the product matching name as Json
         Example: http://localhost:9000/stock/pen
 
-GET     /addnew
+POST     /addnew
         Adds a new product to Stock and returns the updated Stock as Json
         Parameters: name: String, quantity: Int
         Example: http://localhost:9000/addnew?name=orange&quantity=8
 
-GET     /delete
+POST     /delete
         Delete an existing product from Stock and returns the updated Stock as Json
         Parameters: name
         Example: http://localhost:9000/delete?name=pen
 
-GET     /addstock
+POST     /addstock
         Fills products matching name and returns the updated Stock as Json
         Parameters: name: String, quantity: Int
         Example:http://localhost:9000/addstock?name=pencil&quantity=3
 
-GET     /takestock
+POST     /takestock
         Remove specified amount of items from stock and returns the updated Stock as Json. The requested amount
         must be greater than reserve
         Parameters: name: String, quantity: Int
